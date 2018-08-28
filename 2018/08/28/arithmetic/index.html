@@ -115,12 +115,12 @@
 <meta property="og:site_name" content="学习=快乐">
 <meta property="og:description" content="排序算法排序算法是将同一类无序或有序的数据排列成自己特定顺序的一系列算法，一般情况是排列成升序或是降序。本篇博客将介绍八种排序算法 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.插入排序算法原理 插入算法是一种简单的排序算法,把无序的先排序成有序的，再将其他单个元素一个一个插入到有序序列中，找到相应的位置，然后放置到相应位置。 算法步骤 将第一待排">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="/28/arithmetic/arithmetic1.gif">
-<meta property="og:updated_time" content="2018-08-28T04:34:37.365Z">
+<meta property="og:image" content="/2018/08/28/arithmetic/arithmetic1.gif">
+<meta property="og:updated_time" content="2018-08-28T05:05:25.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法">
 <meta name="twitter:description" content="排序算法排序算法是将同一类无序或有序的数据排列成自己特定顺序的一系列算法，一般情况是排列成升序或是降序。本篇博客将介绍八种排序算法 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.插入排序算法原理 插入算法是一种简单的排序算法,把无序的先排序成有序的，再将其他单个元素一个一个插入到有序序列中，找到相应的位置，然后放置到相应位置。 算法步骤 将第一待排">
-<meta name="twitter:image" content="/28/arithmetic/arithmetic1.gif">
+<meta name="twitter:image" content="/2018/08/28/arithmetic/arithmetic1.gif">
 
 
 
@@ -379,7 +379,7 @@
                 
               
 
-              <time title="创建于：2018-08-28 10:34:57 / 更新于：12:34:37" itemprop="dateCreated datePublished" datetime="2018-08-28T10:34:57+08:00">2018-08-28</time>
+              <time title="创建于：2018-08-28 10:34:57 / 更新于：13:05:25" itemprop="dateCreated datePublished" datetime="2018-08-28T10:34:57+08:00">2018-08-28</time>
             
 
             
@@ -456,7 +456,7 @@
 <li><font>从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。</font></li>
 </ol>
 <h5 id="代码实现-java"><a href="#代码实现-java" class="headerlink" title="代码实现(java)"></a>代码实现(java)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inSpace</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;<span class="comment">//插入排序，就是把这个之前的当做已经排好的，然后插入到前面去</span></span><br><span class="line">        <span class="keyword">int</span> j,temp;</span><br><span class="line">        <span class="keyword">if</span> (a.length &lt;= <span class="number">2</span>)<span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;a.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            j=i+<span class="number">1</span>;</span><br><span class="line">            temp = a[j];</span><br><span class="line">           <span class="keyword">while</span>(j&gt;=<span class="number">1</span> &amp;&amp; temp&lt;a[j-<span class="number">1</span>])&#123;<span class="comment">//先判断长度在比大小防止越界</span></span><br><span class="line">               a[j]=a[j-<span class="number">1</span>];<span class="comment">//往右让出一个位置</span></span><br><span class="line">               j--;<span class="comment">//j指向这个位置如果条件不符合就是这里</span></span><br><span class="line">           &#125;</span><br><span class="line">           a[j]=temp;<span class="comment">//temp和j指向的位置调换</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//for(int i:a)System.out.println(i);</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="图片示意图"><a href="#图片示意图" class="headerlink" title="图片示意图"></a>图片示意图</h5><p><img src="/28/arithmetic/arithmetic1.gif" alt="插入排序"></p>
+<h5 id="图片示意图"><a href="#图片示意图" class="headerlink" title="图片示意图"></a>图片示意图</h5><p><img src="/2018/08/28/arithmetic/arithmetic1.gif" alt="插入排序"></p>
 
       
     </div>
