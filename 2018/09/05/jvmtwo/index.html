@@ -108,29 +108,28 @@
 
 
 
-  <meta name="description" content="学习java虚拟机(一): 基础原理java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.运行流程java一直以来的口号都是一次编译处处运行,在编译java文件成class文件之后，就可以在任何拥有java虚拟机的机器上运行。该虚拟">
+  <meta name="description" content="学习java虚拟机(二): 常量池上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.基本概念虚拟机必须为每个被装载的类型维护一个常量池。常量池就是该类型所用到常量的一个有序集和，包括直接常量（string,integer和floating">
 <meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习java虚拟机(一): 基础原理">
-<meta property="og:url" content="microrain.github.io/2018/09/04/jvmone/index.html">
+<meta property="og:title" content="学习java虚拟机(二): 常量池">
+<meta property="og:url" content="microrain.github.io/2018/09/05/jvmtwo/index.html">
 <meta property="og:site_name" content="学习=快乐">
-<meta property="og:description" content="学习java虚拟机(一): 基础原理java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.运行流程java一直以来的口号都是一次编译处处运行,在编译java文件成class文件之后，就可以在任何拥有java虚拟机的机器上运行。该虚拟">
+<meta property="og:description" content="学习java虚拟机(二): 常量池上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.基本概念虚拟机必须为每个被装载的类型维护一个常量池。常量池就是该类型所用到常量的一个有序集和，包括直接常量（string,integer和floating">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="/2018/09/04/jvmone/jvmone2.png">
-<meta property="og:image" content="/2018/09/04/jvmone/jvmone1.png">
-<meta property="og:image" content="/2018/09/04/jvmone/jvmone4.png">
-<meta property="og:updated_time" content="2018-09-04T09:13:33.390Z">
+<meta property="og:image" content="/2018/09/05/jvmtwo/jvmtwo1.png">
+<meta property="og:image" content="/2018/09/05/jvmtwo/jvmtwo2.png">
+<meta property="og:updated_time" content="2018-09-05T07:45:29.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习java虚拟机(一): 基础原理">
-<meta name="twitter:description" content="学习java虚拟机(一): 基础原理java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.运行流程java一直以来的口号都是一次编译处处运行,在编译java文件成class文件之后，就可以在任何拥有java虚拟机的机器上运行。该虚拟">
-<meta name="twitter:image" content="/2018/09/04/jvmone/jvmone2.png">
+<meta name="twitter:title" content="学习java虚拟机(二): 常量池">
+<meta name="twitter:description" content="学习java虚拟机(二): 常量池上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲 该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源  一.基本概念虚拟机必须为每个被装载的类型维护一个常量池。常量池就是该类型所用到常量的一个有序集和，包括直接常量（string,integer和floating">
+<meta name="twitter:image" content="/2018/09/05/jvmtwo/jvmtwo1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="microrain.github.io/2018/09/04/jvmone/"/>
+  <link rel="canonical" href="microrain.github.io/2018/09/05/jvmtwo/"/>
 
 
 
@@ -140,7 +139,7 @@
   };
 </script>
 
-  <title>学习java虚拟机(一): 基础原理 | 学习=快乐</title>
+  <title>学习java虚拟机(二): 常量池 | 学习=快乐</title>
   
 
 
@@ -340,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="microrain.github.io/2018/09/04/jvmone/">
+    <link itemprop="mainEntityOfPage" href="microrain.github.io/2018/09/05/jvmtwo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="肖勇">
@@ -357,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">学习java虚拟机(一): 基础原理
+          <h1 class="post-title" itemprop="name headline">学习java虚拟机(二): 常量池
               
             
           </h1>
@@ -382,7 +381,7 @@
                 
               
 
-              <time title="创建时间：2018-09-04 11:01:07 / 修改时间：17:13:33" itemprop="dateCreated datePublished" datetime="2018-09-04T11:01:07+08:00">2018-09-04</time>
+              <time title="创建时间：2018-09-05 11:01:07 / 修改时间：15:45:29" itemprop="dateCreated datePublished" datetime="2018-09-05T11:01:07+08:00">2018-09-05</time>
             
 
             
@@ -419,8 +418,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/04/jvmone/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/04/jvmone/" itemprop="commentsCount"></span>
+                <a href="/2018/09/05/jvmtwo/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/05/jvmtwo/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -448,76 +447,50 @@
       
 
       
-        <h2 id="学习java虚拟机-一-基础原理"><a href="#学习java虚拟机-一-基础原理" class="headerlink" title="学习java虚拟机(一): 基础原理"></a><font color="#0099ff">学习java虚拟机(一): 基础原理</font></h2><h5 id="java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。"><a href="#java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。" class="headerlink" title="java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。"></a>java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。</h5><blockquote>
+        <h2 id="学习java虚拟机-二-常量池"><a href="#学习java虚拟机-二-常量池" class="headerlink" title="学习java虚拟机(二): 常量池"></a><font color="#0099ff">学习java虚拟机(二): 常量池</font></h2><h5 id="上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲"><a href="#上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲" class="headerlink" title="上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲"></a>上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲</h5><blockquote>
 <p>该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源</p>
 </blockquote>
-<h3 id="一-运行流程"><a href="#一-运行流程" class="headerlink" title="一.运行流程"></a><font color="#324057">一.运行流程</font></h3><p>java一直以来的口号都是一次编译处处运行,在编译java文件成class文件之后，就可以在任何拥有java虚拟机的机器上运行。该虚拟机会将该class文件进行编译，转换成机器码让机器识别,最终就可以被运行。<br><img src="/2018/09/04/jvmone/jvmone2.png" alt="jvmone2"><br>当jvm得到class文件之后又进行了哪些步骤？<br>首先，jvm会去寻找在系统中的jvm.cfg文件，然后从文件中读取你所选择的虚拟机。</p>
-<p>在学习这个之前，我们需要了解一件事情，就是JDK和JRE的区别。</p>
-<p>JDK是面向开发人员使用的SDK，它提供了Java的开发环境和运行环境，JDK中包含了JRE。</p>
-<p>JRE是Java的运行环境，是面向所有Java程序的使用者，包括开发者。</p>
-<p>JRE = 运行环境 = JVM。</p>
-<p>如果安装了JDK，会发现电脑中有两套JRE，一套位于/Java/jre…/下，一套位于/Java/jdk…/jre下。那么问题来了，一台机器上有两套以上JRE，谁来决定运行那一套呢？这个任务就落到java.exe身上，java.exe的任务就是找到合适的JRE来运行java程序。<br>java.exe按照以下的顺序来选择JRE：</p>
-<p>1、自己目录下有没有JRE</p>
-<p>2、父目录下有没有JRE</p>
-<p>3、查询注册表： HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\”当前JRE版本号”\JavaHome</p>
-<p>这几步的主要核心是为了找到JVM的绝对路径。</p>
-<p>jvm.cfg的路径为：JRE路径\lib\”CPU架构”\jvm.fig<br>我自己打开了自己的jvm.cfg文件<br><img src="/2018/09/04/jvmone/jvmone1.png" alt="jvmone1"><br>KNOWN 表示存在 、IGNORE 表示不存在 、ALIASED_TO 表示给别的JVM去一个别名<br>WARN 表示不存在时找一个替代 、ERROR 表示不存在抛出异常</p>
-<p>这里面记载的是可用的jvm，也就是jvm执行文件jvm.dll的文件所在位置，你可以自行搜索jvm.dll，就可以看到它在client和server下都有个jvm.dll</p>
-<p>通过第一步找到JVM的路径后，Java.exe通过LoadJavaVM来装入JVM文件。<br>LoadLibrary装载JVM动态连接库，然后把JVM中的到处函数JNI_CreateJavaVM和JNI_GetDefaultJavaVMIntArgs 挂接到InvocationFunction 变量的CreateJavaVM和GetDafaultJavaVMInitArgs 函数指针变量上。JVM的装载工作完成。</p>
-<p>在装载完虚拟机之后，我们得把class文件给放入虚拟机中运行,这时候会用到JNI.JNI是JAVA本地接口,它就是从本地找到需要运行的class文件放入JVM的接口(它也常用于java与操作系统或硬件的交互)。class装载进去后，找到main方法，执行文件。</p>
-<h3 id="二-基本结构"><a href="#二-基本结构" class="headerlink" title="二.基本结构"></a><font color="#324057">二.基本结构</font></h3><p>经过上面粗略的介绍之后，我们了解到，class文件经过一系列的步骤之后，被加载进了jvm，那进入jvm之后它又怎样了？大致是解释成了如下结构:</p>
-<p><img src="/2018/09/04/jvmone/jvmone4.png" alt="jvmone4"></p>
-<p>其中要学习的重点是内存空间，PC寄存器和垃圾回收器。</p>
-<h5 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h5><p>方法区是一个堆结构的存储区域，但是它又被称为Non-Heap(非堆)，这样是为了和java堆结构区分开来。这是个线程共享的区域，用于存储已经被jvm加载完的类信息，常量，静态变量和即时编译器编译后的代码等数据。<br>在HotSpot虚拟机中，常常把方法区称作是“永久代”。但它只是HotSpot在实现方法区的时候用了永久代，这样做是为了垃圾回收器能够对这里回收。但是1.8之后都不是这样做了，这里只做了解。<br>相对而言，垃圾收集行为在这个区域是比较少出现的，但并非数据进入方法区后就“永久存在”了。</p>
-<h5 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h5><p>这里是java容易发生oom错误的地方，因为这里存储的是实例化之后的类对象和数组。这是一个线程共享的内存区域，在虚拟机启动的时候创建。<br>java堆是数据更迭最多的地方也就是垃圾回收器主要的存在地点，所以它也被称为GC堆。GC堆大致分为新生代和老年代，新生代在分代垃圾回收器中分为Eden空间、From Survivor、To Survivor空间等。这样是为了更快更高效的回收垃圾，在之后章节做出更多分析。</p>
-<h5 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h5><p>jvm中有两个栈，一个是虚拟机栈，另一个是本地方法栈。我们先讲虚拟机栈，这个是线程私有的，每有一个线程就创建一个栈，每执行一个方法就往里面加一个栈帧，栈帧里面存储的是局部变量表，操作数栈，动态链接，返回地址等。</p>
+<h3 id="一-基本概念"><a href="#一-基本概念" class="headerlink" title="一.基本概念"></a><font color="#324057">一.基本概念</font></h3><p>虚拟机必须为每个被装载的类型维护一个常量池。常量池就是该类型所用到常量的一个有序集和，包括直接常量（string,integer和floating point常量）和对其他类型，字段和方法的符号引用。对于String常量，它的值是在常量池中的。而JVM中的常量池在内存当中是以表的形式存在的，对于String类型，有一张固定长度的CONSTANT_String_info表用来存储文字字符串值，注意：该表只存储文字字符串值，不存储符号引用。说到这里，对常量池中的字符串值的存储位置应该有一个比较明了的理解了。</p>
+<h3 id="二-基本类型"><a href="#二-基本类型" class="headerlink" title="二.基本类型"></a><font color="#324057">二.基本类型</font></h3><p>Java 基本类型的包装类的大部分都实现了常量池技术，即Byte,Short,Integer,Long,Character,Boolean；这5种包装类默认创建了数值[-128，127]的相应类型的缓存数据，但是超出此范围仍然会去创建新的对象。</p>
+<p>两种浮点数类型的包装类 Float,Double 并没有实现常量池技术。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">33</span>;</span><br><span class="line">Integer b = <span class="number">33</span>;</span><br><span class="line">System.out.println(a == b)<span class="comment">//输出true</span></span><br><span class="line">Integer c = <span class="number">333</span>;</span><br><span class="line">Integer d = <span class="number">333</span>;</span><br><span class="line">System.out.println(c == d)<span class="comment">//输出false</span></span><br><span class="line">Double e = <span class="number">1.2</span>;</span><br><span class="line">Double f = <span class="number">1.2</span>;</span><br><span class="line">System.out.println(e == f)<span class="comment">//输出false</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看Integer的缓存源代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">       <span class="keyword">return</span> IntegerCache.cache[i+(-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Ingeter(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>应用场景</p>
 <ol>
-<li>局部变量表<br>主要存放了编译器可知的变量类型(byte,double,int,float,char,short,boolean,long)和对象引用(对象的地址,其一是指向对象的起始地址，另一是指向一个句柄或其他与其相关的引用)</li>
-<li>操作数栈<br>操作数栈是一个先入后出栈，是方法进行时进行算数运算或者是在调用其他方法时传递参数的时候起作用的。</li>
-<li>动态链接<br>每个栈帧都包含一个执行运行时常量池中该栈帧所属方法的引用，持有这个引用是为了支持方法调用过程中的动态连接（Dynamic Linking）。<br>Class 文件中存放了大量的符号引用，字节码中的方法调用指令就是以常量池中指向方法的符号引用作为参数。这些符号引用一部分会在类加载阶段或第一次使用时转化为直接引用，这种转化称为静态解析。另一部分将在每一次运行期间转化为直接引用，这部分称为动态连接。</li>
-<li><p>返回地址</p>
-<ul>
-<li>当一个方法开始执行以后，只有两种方法可以退出当前方法：<ul>
-<li>当执行遇到返回指令，会将返回值传递给上层的方法调用者，这种退出的方式称为正常完成出口（Normal Method Invocation Completion），一般来说，调用者的PC计数器可以作为返回地址。</li>
-<li>当执行遇到异常，并且当前方法体内没有得到处理，就会导致方法退出，此时是没有返回值的，称为异常完成出口（Abrupt Method Invocation Completion），返回地址要通过异常处理器表来确定。</li>
-</ul>
-</li>
-<li>当方法返回时，可能进行3个操作：<ul>
-<li>恢复上层方法的局部变量表和操作数栈</li>
-<li>把返回值压入调用者调用者栈帧的操作数栈</li>
-<li>调整 PC 计数器的值以指向方法调用指令后面的一条指令<h5 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h5></li>
-</ul>
-</li>
-</ul>
-<p>本地方法栈角色和java栈类似，只不过它是用来表示执行本地方法的，本地方法栈存放的方法调用本地方法接口，最终调用本地方法库，实现与操作系统、硬件交互的目的。区别是： 虚拟机栈为虚拟机执行Java方法 （也就是字节码）服务，而本地方法栈则为虚拟机使用到的Native方法服务。 在HotSpot虚拟机中和Java虚拟机栈合二为一。</p>
+<li>Integer i1=40；Java在编译的时候会直接将代码封装成Integer i1=Integer.valueOf(40);，从而使用常量池中的对象。</li>
+<li>Integer i1 = new Integer(40);这种情况下会创建新的对象，所以尽量避免使用这种方式。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ingeter i1 = <span class="number">40</span>;</span><br><span class="line">Ingeter i2 = <span class="keyword">new</span> Ingeter(<span class="number">40</span>);</span><br><span class="line">System.out.println(i1 == i2);<span class="comment">//返回false</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h5 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h5><p>PC寄存器还叫程序计数器。程序计数器是一块较小的内存空间，可以看作是当前线程所执行的字节码的行号指示器。字节码解释器工作时通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等功能都需要依赖这个计数器来完。</p>
-<p>另外，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各线程之间计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存。</p>
-<h5 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h5><p>直接内存并不是虚拟机运行时数据区的一部分，也不是虚拟机规范中定义的内存区域，但是这部分内存也被频繁地使用。而且也可能导致OutOfMemoryError异常出现。</p>
-<p>JDK1.4中新加入的NIO(New Input/Output)类，引入了一种基于通道（Channel） 与缓存区（Buffer） 的I/O方式，它可以直接使用Native函数库直接分配堆外内存，然后通过一个存储在java堆中的DirectByteBuffer对象作为这块内存的引用进行操作。这样就能在一些场景中显著提高性能，因为避免了在Java堆和Native堆之间来回复制数据。</p>
-<p>本机直接内存的分配不会收到Java堆的限制，但是，既然是内存就会受到本机总内存大小以及处理器寻址空间的限制。</p>
-<h5 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h5><p>运行时常量池是方法区的一部分。Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有常量池信息（用于存放编译期生成的各种字面量和符号引用）</p>
-<p>既然运行时常量池时方法区的一部分，自然受到方法区内存的限制，当常量池无法再申请到内存时会抛出 OutOfMemoryError 异常。</p>
-<p>JDK1.7及之后版本的 JVM 已经将运行时常量池从方法区中移了出来，在 Java 堆（Heap）中开辟了一块区域存放运行时常量池。同时在 jdk 1.8中移除整个永久代，取而代之的是一个叫元空间（Metaspace）的区域</p>
-<h5 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h5><p>其实，移除永久代的工作从JDK1.7就开始了。JDK1.7中，存储在永久代的部分数据就已经转移到了Java Heap或者是 Native Heap。但永久代仍存在于JDK1.7中，并没完全移除，譬如符号引用(Symbols)转移到了native heap；字面量(interned strings)转移到了java heap；类的静态变量(class statics)转移到了java heap。</p>
-<p>永久代被元空间取代的原因：</p>
-<ol>
-<li><p>字符串存在永久代中，容易出现性能问题和内存溢出。</p>
+<p>全部例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Integer i1 = <span class="number">40</span>;</span><br><span class="line">Integer i2 = <span class="number">40</span>;</span><br><span class="line">Integer i3 = <span class="number">0</span>;</span><br><span class="line">Integer i4 = <span class="keyword">new</span> Integer(<span class="number">40</span>);</span><br><span class="line">Integer i5 = <span class="keyword">new</span> Integer(<span class="number">40</span>);</span><br><span class="line">Integer i6 = <span class="keyword">new</span> Integer(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"i1=i2   "</span> + (i1 == i2));<span class="comment">//true</span></span><br><span class="line">System.out.println(<span class="string">"i1=i2+i3   "</span> + (i1 == i2 + i3));<span class="comment">//true</span></span><br><span class="line">System.out.println(<span class="string">"i1=i4   "</span> + (i1 == i4));<span class="comment">//false</span></span><br><span class="line">System.out.println(<span class="string">"i4=i5   "</span> + (i4 == i5));<span class="comment">//false</span></span><br><span class="line">System.out.println(<span class="string">"i4=i5+i6   "</span> + (i4 == i5 + i6));<span class="comment">//true   </span></span><br><span class="line">System.out.println(<span class="string">"40=i5+i6   "</span> + (<span class="number">40</span> == i5 + i6));<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>部分解释:<br>语句i4 == i5 + i6，因为+这个操作符不适用于Integer对象，首先i5和i6进行自动拆箱操作，进行数值相加，即i4 == 40。然后Integer对象无法与数值进行直接比较，所以i4自动拆箱转为int值40，最终这条语句转为40 == 40进行数值比较。</p>
+<h3 id="三-String-类"><a href="#三-String-类" class="headerlink" title="三.String 类"></a><font color="#324057">三.String 类</font></h3><p>1.String的两种创建方式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abcd"</span>;</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">"abcd"</span>);</span><br><span class="line">System.out.println(str1==str2);<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p>这两种不同的创建方法是有差别的，第一种方式是在常量池中拿对象，第二种方式是直接在堆内存空间创建一个新的对象。</p>
+<p><img src="/2018/09/05/jvmtwo/jvmtwo1.png" alt="jvmtwo1"></p>
+<p>只要使用new方法，便需要创建新的对象。</p>
+<ol start="2">
+<li><p>String类型的常量池比较特殊。它的主要使用方法有两种：</p>
+<ul>
+<li><p>直接使用双引号声明出来的String对象会直接存储在常量池中。</p>
 </li>
-<li><p>类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。</p>
+<li><p>如果不是用双引号声明的String对象，可以使用String提供的intern方String.intern() 是一个Native方法，它的作用是：如果运行时常量池中已经包含一个等于此String对象内容的字符串，则返回常量池中该字符串的引用；如果没有，则在常量池中创建与此 String 内容相同的字符串，并返回常量池中创建的字符串的引用。</p>
 </li>
-<li><p>永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</p>
+</ul>
 </li>
-<li><p>Oracle 可能会将HotSpot 与 JRockit 合二为一。</p>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"计算机"</span>);</span><br><span class="line">String s2 = s1.intern();</span><br><span class="line">String s3 = <span class="string">"计算机"</span>;</span><br><span class="line">System.out.println(s2);<span class="comment">//计算机</span></span><br><span class="line">System.out.println(s1 == s2);<span class="comment">//false，因为一个是堆内存中的String对象一个是常量池中的String对象，</span></span><br><span class="line">System.out.println(s3 == s2);<span class="comment">//true，因为两个都是常量池中的String对</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>String字符串拼接<br>尽量避免多个字符串拼接，因为这样会重新创建对象。如果需要改变字符串的花，可以使用 StringBuilder 或者 StringBuffer。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str3 = <span class="string">"str"</span> + <span class="string">"ing"</span>;<span class="comment">//常量池中的对象</span></span><br><span class="line">String str4 = str1 + str2; <span class="comment">//在堆上创建的新的对象     </span></span><br><span class="line">String str5 = <span class="string">"string"</span>;<span class="comment">//常量池中的对象</span></span><br><span class="line">System.out.println(str3 == str4);<span class="comment">//false</span></span><br><span class="line">System.out.println(str3 == str5);<span class="comment">//true</span></span><br><span class="line">System.out.println(str4 == str5);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/2018/09/05/jvmtwo/jvmtwo2.png" alt="jvmtwo1"></p>
+<h5 id="String-s1-new-String-“abc”-这句话创建了几个对象？"><a href="#String-s1-new-String-“abc”-这句话创建了几个对象？" class="headerlink" title="String s1 = new String(“abc”);这句话创建了几个对象？"></a>String s1 = new String(“abc”);这句话创建了几个对象？</h5><h5 id="创建了两个对象。"><a href="#创建了两个对象。" class="headerlink" title="创建了两个对象。"></a>创建了两个对象。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);<span class="comment">// 堆内存的地值值</span></span><br><span class="line">String s2 = <span class="string">"abc"</span>;</span><br><span class="line">System.out.println(s1 == s2);<span class="comment">// 输出false,因为一个是堆内存，一个是常量池的内存，故两者是不同的。</span></span><br><span class="line">System.out.println(s1.equals(s2));<span class="comment">// 输出true</span></span><br></pre></td></tr></table></figure>
+<h5 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h5><p>先有字符串”abc”放入常量池，然后 new 了一份字符串”abc”放入Java堆(字符串常量”abc”在编译期就已经确定放入常量池，而 Java 堆上的”abc”是在运行期初始化阶段才确定)，然后 Java 栈的 str1 指向Java堆上的”abc”。</p>
 <h3 id="关于此篇博客"><a href="#关于此篇博客" class="headerlink" title="关于此篇博客"></a>关于此篇博客</h3><blockquote>
-<p>这篇博客是为了学习jvm的原理，主要是学习它的内存分布，上面基本都讲全了，但是里面提到的两个东西得分开讲，一个是常量池，另一个是GC。</p>
+<p>这篇博客大部分是复制别的博客的内容，这篇博客主要目的是复制记忆这部分知识，因为这部分知识不难，代码都是自己测试了并且手打的，把这篇博客放在这里是为了下次复习可用。</p>
 </blockquote>
 <h5 id="引用博客"><a href="#引用博客" class="headerlink" title="引用博客"></a>引用博客</h5><blockquote>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&amp;mid=2247484303&amp;idx=1&amp;sn=af0fd436cef755463f59ee4dd0720cbd&amp;chksm=fd9855eecaefdcf8d94ac581cfda4e16c8a730bda60c3b50bc55c124b92f23b6217f7f8e58d5&amp;mpshare=1&amp;scene=1&amp;srcid=0821XpdsnXNQQW5nni0mrLTa#rd" target="_blank" rel="noopener">Java面试通关手册 –Snailclimb </a><br><a href="https://www.cnblogs.com/leefreeman/p/7344460.html" target="_blank" rel="noopener">深入理解JVM–飘扬的红岭巾</a><br><a href="http://www.cnblogs.com/paddix/p/5309550.html" target="_blank" rel="noopener">Java8内存模型—永久代(PermGen)和元空间(Metaspace)</a><br><a href="https://blog.csdn.net/zq602316498/article/details/38926607" target="_blank" rel="noopener">深入理解java虚拟机（十） Java 虚拟机运行时栈帧结构</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&amp;mid=2247484303&amp;idx=1&amp;sn=af0fd436cef755463f59ee4dd0720cbd&amp;chksm=fd9855eecaefdcf8d94ac581cfda4e16c8a730bda60c3b50bc55c124b92f23b6217f7f8e58d5&amp;mpshare=1&amp;scene=1&amp;srcid=0821XpdsnXNQQW5nni0mrLTa#rd" target="_blank" rel="noopener">Java面试通关手册 –Snailclimb </a></p>
 </blockquote>
-</li>
-</ol>
 
       
     </div>
@@ -551,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/28/arithmetic/" rel="next" title="排序算法">
-                <i class="fa fa-chevron-left"></i> 排序算法
+              <a href="/2018/09/04/jvmone/" rel="next" title="学习java虚拟机(一): 基础原理">
+                <i class="fa fa-chevron-left"></i> 学习java虚拟机(一): 基础原理
               </a>
             
           </div>
@@ -560,10 +533,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/05/jvmtwo/" rel="prev" title="学习java虚拟机(二): 常量池">
-                学习java虚拟机(二): 常量池 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习java虚拟机-一-基础原理"><span class="nav-number">1.</span> <span class="nav-text">学习java虚拟机(一): 基础原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">java虚拟机简称jvm，该部分知识是学习java比较重要的一部分，如果要深入java进行研究学习，那jvm就是入门的标准。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-运行流程"><span class="nav-number">1.1.</span> <span class="nav-text">一.运行流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-基本结构"><span class="nav-number">1.2.</span> <span class="nav-text">二.基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法区"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PC寄存器"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">PC寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#直接内存"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">直接内存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常量池"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">常量池</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元空间"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">元空间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于此篇博客"><span class="nav-number">1.3.</span> <span class="nav-text">关于此篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用博客"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">引用博客</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习java虚拟机-二-常量池"><span class="nav-number">1.</span> <span class="nav-text">学习java虚拟机(二): 常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">上节讲到jvm基础的内存分布中，有个部分叫常量池，这里是一个特别的部分，而且有些时候会问到，所以单独做一个模块来讲</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">一.基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-基本类型"><span class="nav-number">1.2.</span> <span class="nav-text">二.基本类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-String-类"><span class="nav-number">1.3.</span> <span class="nav-text">三.String 类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#String-s1-new-String-“abc”-这句话创建了几个对象？"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">String s1 = new String(“abc”);这句话创建了几个对象？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建了两个对象。"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">创建了两个对象。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解释："><span class="nav-number">1.3.0.3.</span> <span class="nav-text">解释：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于此篇博客"><span class="nav-number">1.4.</span> <span class="nav-text">关于此篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用博客"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">引用博客</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
