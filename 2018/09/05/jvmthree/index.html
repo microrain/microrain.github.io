@@ -108,18 +108,29 @@
 
 
 
-  <meta name="description" content="123">
+  <meta name="description" content="学习java虚拟机(三): 垃圾回收机制之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快">
 <meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习java虚拟机(三): 垃圾回收机制">
 <meta property="og:url" content="microrain.github.io/2018/09/05/jvmthree/index.html">
 <meta property="og:site_name" content="学习=快乐">
-<meta property="og:description" content="123">
+<meta property="og:description" content="学习java虚拟机(三): 垃圾回收机制之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T07:53:07.000Z">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree1.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree2.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree3.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree4.jpg">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree5.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree6.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree7.png">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree8.jpg">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree9.jpg">
+<meta property="og:image" content="/2018/09/05/jvmthree/jvmthree10.jpg">
+<meta property="og:updated_time" content="2018-09-06T08:32:25.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习java虚拟机(三): 垃圾回收机制">
-<meta name="twitter:description" content="123">
+<meta name="twitter:description" content="学习java虚拟机(三): 垃圾回收机制之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快">
+<meta name="twitter:image" content="/2018/09/05/jvmthree/jvmthree1.png">
 
 
 
@@ -362,6 +373,11 @@
         <div class="post-meta">
           <span class="post-time">
 
+			  
+				<i class="fa fa-thumb-tack"></i>
+				<font color=7D26CD>置顶</font>
+				<span class="post-meta-divider">|</span>
+			  
             
             
             
@@ -378,11 +394,28 @@
                 
               
 
-              <time title="创建时间：2018-09-05 15:53:07" itemprop="dateCreated datePublished" datetime="2018-09-05T15:53:07+08:00">2018-09-05</time>
+              <time title="创建于：2018-09-05 15:53:07" itemprop="dateCreated datePublished" datetime="2018-09-05T15:53:07+08:00">2018-09-05</time>
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="更新于：2018-09-06 16:32:25" itemprop="dateModified" datetime="2018-09-06T16:32:25+08:00">2018-09-06</time>
+              
+            
           </span>
+
 
           
             <span class="post-category" >
@@ -440,7 +473,174 @@
       
 
       
-        <p>123</p>
+        <h2 id="学习java虚拟机-三-垃圾回收机制"><a href="#学习java虚拟机-三-垃圾回收机制" class="headerlink" title="学习java虚拟机(三): 垃圾回收机制"></a><font color="#0099ff">学习java虚拟机(三): 垃圾回收机制</font></h2><h5 id="之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java-GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。"><a href="#之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java-GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。" class="headerlink" title="之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。"></a>之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。</h5><blockquote>
+<p>该篇博客基本是向其他博主借鉴学习，借用其他博主的图片为学习所用，在博客底部会注明图片来源</p>
+</blockquote>
+<p>接下来我们将从各个部分来了解垃圾回收机制</p>
+<h3 id="一-堆内存结构"><a href="#一-堆内存结构" class="headerlink" title="一.堆内存结构"></a><font color="#324057">一.堆内存结构</font></h3><p>首先是对堆的划分，主要分为三个区域：新生代，老年代和永久代。<br>新生代主要分为: eden ， from survivor 和to survivor 三个区域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+---------------------------+-------------------------------+-------------------+</span><br><span class="line">|          |       |        |                               |                   |</span><br><span class="line">|   Eden   |   S0  |   S1   |       Old generation          |      Perm         |</span><br><span class="line">|          |       |        |                               |                   |</span><br><span class="line">+---------------------------+-------------------------------+-------------------+</span><br><span class="line">|&lt;----Young Gen Space------&gt;|</span><br></pre></td></tr></table></figure>
+<p>这些层次基本是从左往右，只要存活时间够长就会经过判断，一层一层往下走，到了永久层基本不会再进行回收了。永久代里面存放的是Class类元数据、方法描述等。</p>
+<blockquote>
+<ol>
+<li>新生代分为eden s0 s1，s1 是和 s0 等大的一个内存区域，这是因为新生代主要使用的是复制算法，新生的对象进入s0 ，把需要的对象放入s1，然后清除s0的对象完成一次垃圾回收，然后把s1和s0进行交换位置，进行反复使用。</li>
+<li>永久代这个概念，在HotSpot虚拟机中就是我们说的方法区，但是到了永久代基本都不需要垃圾回收了，所以在jdk1.7之后没有了永久代，取而代之的是元空间。</li>
+<li>并非所有的对象创建都会在Eden区中分配内存空间。对于Serial和ParNew垃圾收集器,通过指定-XX:PretenureSizeThreshold={size}来设置超过这个阈值大小的对象直接进入老年代。</li>
+</ol>
+</blockquote>
+<h3 id="二-分代回收算法"><a href="#二-分代回收算法" class="headerlink" title="二.分代回收算法"></a><font color="#324057">二.分代回收算法</font></h3><p>我们一般讨论的垃圾回收主要针对Java堆内存中的新生代和老年代，也正因为新生代和老年代结构上的不同，所以产生了分代回收算法，即新生代的垃圾回收和老年代的垃圾回收采用的是不同的回收算法。针对新生代，主要采用复制算法，而针对老年代，通常采用标记-清除算法或者标记-整理算法来进行回收。</p>
+<h4 id="1-复制算法"><a href="#1-复制算法" class="headerlink" title="1. 复制算法"></a>1. 复制算法</h4><p>复制算法的思想是将内存分成大小相等的两块区域，每次使用其中的一块。当这一块的内存用完了，就将还存活的对象复制到另一块区域上，然后对该块进行内存回收。示例图如下所示：</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree1.png" alt="jvmthree1"></p>
+<p>这个算法实现简单，并且也相对高效，但是代价就是需要将牺牲一半的内存空间用于进行复制。有研究表明，新生代中的对象98%存活期很短，所以并不需要以1:1的比例来划分整个新生代，通常的做法是将新生代内存空间划分成一块较大的Eden区和两块较小的Survivor区，两块Survivor区域的大小保持一致。每次使用Eden和其中一块Survivor区，当回收的时候，将还存活的对象复制到另外一块Survivor空间上，最后清除Eden区和一开始使用的Survivor区。假如用于复制的Survivor区放不下存活的对象，那么会将对象存到老年代。</p>
+<blockquote>
+<p>HotSpot虚拟机默认Eden和Survivor的大小比例是8:1:1，也就是说新生代中牺牲掉10%的空间而不是一半的空间。</p>
+</blockquote>
+<h4 id="2-标记-清除算法"><a href="#2-标记-清除算法" class="headerlink" title="2. 标记-清除算法"></a>2. 标记-清除算法</h4><p>标记清除算法分为标记和清除两个部分</p>
+<p>在标记阶段将标记出需要回收的对象空间，然后在下一个阶段清除阶段里面，将这些标记出来的对象空间回收掉。这种算法有两个主要问题：一个是标记和清除的效率不高，另一个问题是在清理之后会产生大量不连续的内存碎片，这样会导致在分配大对象时候无法找到足够的连续内存而触发另一次垃圾收集动作。标记-清除算法示例图如下所示：</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree2.png" alt="jvmthree1"></p>
+<h4 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3. 标记-整理算法"></a>3. 标记-整理算法</h4><p>标记-整理(Mark-Compact)算法有效预防了标记-清除算法中可能产生过多内存碎片的问题。在标记需要回收的对象以后，它会将所有存活的对象空间挪到一起，然后再执行清理。示例图如下所示：</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree3.png" alt="jvmthree1"></p>
+<blockquote>
+<p>标记-整理通常会在标记-清除算法里面作为备选方案，为了防止标记-清除后产生大量内存碎片而无法为大对象分配足够内存的情况，如后面所讲的Serial Old收集器(基于标记-整理算法实现)将会作为CMS收集器(基于标记-清除算法实现)的备选方案。</p>
+</blockquote>
+<h3 id="三-垃圾回收器"><a href="#三-垃圾回收器" class="headerlink" title="三.垃圾回收器"></a><font color="#324057">三.垃圾回收器</font></h3><p>因为新生代和老年代的回收算法不一样，所以它们所使用的垃圾回收器也不一样。新生代主要有：serial ，parnew 和parallel scavenge收集器，老年代有 serial old ,Parallel Old 和CMS收集器。除此之外还有一个现在常用到的G1收集器，它适合新生代和老年代。</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree4.jpg" alt="jvmthree1"></p>
+<h4 id="1-新生代收集器"><a href="#1-新生代收集器" class="headerlink" title="1. 新生代收集器"></a>1. 新生代收集器</h4><ul>
+<li><h5 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h5></li>
+</ul>
+<p>Serial收集器作用于新生代，是一个单线程收集器，基于复制算法实现。在进行垃圾回收的时候仅使用单条线程并且在回收的过程中会挂起所有的用户线程(Stop The World)。Serial收集器是JVM client模式下默认的新生代收集器。</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree5.png" alt="jvmthree1"></p>
+<blockquote>
+<p>特别注意，Stop-The-World会挂起应用线程，造成应用的停顿。</p>
+</blockquote>
+<ul>
+<li><h5 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h5></li>
+</ul>
+<p>ParNew收集器作用于新生代，是一个多线程收集器，基于复制算法实现。相对于Serial收集器而言，在垃圾回收的时候会同时使用多条线程进行回收，但是它跟Serial收集器一样，在回收过程中也是会挂起所有的用户线程，从而造成应用的停顿。</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree6.png" alt="jvmthree1"></p>
+<ul>
+<li><h5 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h5></li>
+</ul>
+<p>Parallel Scavenge收集器同样作用于新生代，并且也是采用多线程和复制算法来进行垃圾回收。Parallel Scavenge收集器关注的是吞吐量，即使得应用能够充分使用CPU。它与ParNew收集器一样，在回收过程会挂起所有的用户线程，造成应用停顿。</p>
+<blockquote>
+<p>所谓吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值。即吞吐量 = 运行用户代码时间 / (运行用户代码时间 + 垃圾收集时间)。如果虚拟机运行了100分钟，其中垃圾收集花了1分钟，那么吞吐量就是99%。</p>
+</blockquote>
+<h4 id="2-老年代收集器"><a href="#2-老年代收集器" class="headerlink" title="2. 老年代收集器"></a>2. 老年代收集器</h4><ul>
+<li><h5 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h5></li>
+</ul>
+<p>Serial Old收集器作用于老年代，采用单线程和标记-整理算法来实现垃圾回收。在回收垃圾的时候同样会挂起所有用户线程，造成应用的停顿。一般来说，老年代的容量都比新生代要大，所以当发生老年代的垃圾回收时，STW经历的时间会比新生代所用的时间长得多。该收集器是JVM client模式下默认的老年代收集器。</p>
+<blockquote>
+<p>Serial Old收集器还有一个重要的用途是作为CMS收集器的后备方案，在并发收集发生Concurrent Mode Failure的时候使用，进行内存碎片的整理。</p>
+</blockquote>
+<ul>
+<li><h5 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h5></li>
+</ul>
+<p>Parallel Old收集器是Parallel Scavenge收集器的老年代版本，采用多线程和标记-整理算法来实现老年代的垃圾回收。这个收集器主要是为了配合Parallel Scavenge收集器的使用，即当新生代选择了Parallel Scavenge收集器的情况下，老年代可以选择Parallel Old收集器。</p>
+<blockquote>
+<p>在JDK1.6以前并没有提供Parallel Scavenge收集器，所以在1.6版本以前，Parallel Scavenge收集器只能与Serial Old收集器搭配使用。</p>
+</blockquote>
+<ul>
+<li><h5 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h5></li>
+</ul>
+<p>CMS(Concurrent Mark Sweep)收集器是一款真正实现了并发收集的老年代收集器。CMS收集器以获取最短回收停顿时间为目标，采用多线程并发以及标记-清除算法来实现垃圾回收。CMS只在初始化标记和重新标记阶段需要挂起用户线程,造成一定的应用停顿(STW)，而其他阶段收集线程都可以与用户线程并发交替进行，不必挂起用户线程，所以并不会造成应用的停顿。CMS收集器可以最大程度地减少因垃圾回收而造成应用停顿的时间。</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree7.png" alt="jvmthree7"></p>
+<p>CMS垃圾收集分为以下几个阶段：</p>
+<p>(1) 初始化标记 (inital mark)</p>
+<p>这个阶段仅仅是标记了GC Roots能够直接关联到的对象，速度很快，所以基本上感受不到STW带来的停顿。</p>
+<p>(2) 并发标记 (concurrent mark)</p>
+<p>并发标记阶段完成的任务是从第一阶段收集到的对象引用开始，遍历所有其他的对象引用，并标记所有需要回收的对象。这个阶段，收集线程与用户线程并发交替执行，不必挂起用户线程，所以并不会造成应用停顿。</p>
+<p>(3) 并发预清除 (concurrent-pre-clean)</p>
+<p>并发预清除阶段是为了下一个阶段做准备，为的是尽量减少应用停顿的时间。</p>
+<p>(4) 重新标记 (remark)</p>
+<p>这个阶段将会修正并发标记期间因为用户程序继续运作而导致标记产生变动的那部分对象的标记记录(有可能对象重新被引用或者新对象可以被回收)。这个阶段的停顿时间比初始标记阶段要长一些，但是远比并发标记的时间短。</p>
+<p>(5) 并发清除 (concurrent sweep)</p>
+<p>这个阶段将真正执行垃圾回收，将那些不被使用的对象内存回收掉。</p>
+<p>(6) 并发重置 (concurrent reset)</p>
+<p>收集器做一些收尾的工作，以便下一次GC周期能有一个干净的状态。</p>
+<p>使用CMS要注意以下两个关键词：</p>
+<ul>
+<li>concurrent mode failure</li>
+<li>promotion failed</li>
+</ul>
+<p>对于采用CMS进行老年代GC的程序而言，尤其要注意GC日志中是否有promotion failed和concurrent mode failure两种状况，当这两种状况出现时可能会触发Full GC。promotion failed是在进行Minor GC时，新生代的survivor区放不下,对象只能放入老年代，而此时老年代也放不下造成的。concurrent mode failure是在执行CMS GC的过程中同时有对象要放入老年代(满足一定年龄的对象或者大对象)，而此时老年代空间不足造成的。</p>
+<blockquote>
+<p>通常我们把发生在新生代的垃圾回收称为Minor GC，而把发生在老年代的垃圾回收称为Major GC，而FullGC是指整个堆内存的垃圾回收，包括对新生代、老年代和持久代的回收。一般情况下应用程序发生Minor GC的次数要远远大于Major GC和Full GC的次数。</p>
+</blockquote>
+<ul>
+<li><h5 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h5></li>
+</ul>
+<p>G1 (Garbage-First)是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足GC停顿时间要求的同时,还具备高吞吐量性能特征.</p>
+<p>被视为JDK1.7中HotSpot虚拟机的一个重要进化特征。它具备一下特点：</p>
+<ul>
+<li><b>并行与并发</b>：G1能充分利用CPU、多核环境下的硬件优势，使用多个CPU（CPU或者CPU核心）来缩短Stop-The-World停顿时间。部分其他收集器原本需要停顿Java线程执行的GC动作，G1收集器仍然可以通过并发的方式让java程序继续执行。</li>
+<li><b>分代收集</b>：虽然G1可以不需要其他收集器配合就能独立管理整个GC堆，但是还是保留了分代的概念。</li>
+<li><b>空间整合</b>：与CMS的“标记–清理”算法不同，G1从整体来看是基于“标记整理”算法实现的收集器；从局部上来看是基于“复制”算法实现的。</li>
+<li><b>可预测的停顿</b>：这是G1相对于CMS的另一个大优势，降低停顿时间是G1 和 CMS 共同的关注点，但G1 除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为M毫秒的时间片段内。</li>
+</ul>
+<p>G1收集器的运作大致分为以下几个步骤：</p>
+<ul>
+<li><h5 id="初始标记"><a href="#初始标记" class="headerlink" title="初始标记"></a>初始标记</h5></li>
+<li><h5 id="并发标记"><a href="#并发标记" class="headerlink" title="并发标记"></a>并发标记</h5></li>
+<li><h5 id="最终标记"><a href="#最终标记" class="headerlink" title="最终标记"></a>最终标记</h5></li>
+<li><h5 id="筛选回收"><a href="#筛选回收" class="headerlink" title="筛选回收"></a>筛选回收</h5></li>
+</ul>
+<p>G1收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的Region(这也就是它的名字Garbage-First的由来)。这种使用Region划分内存空间以及有优先级的区域回收方式，保证了GF收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
+<h3 id="四-判断对象是否可回收"><a href="#四-判断对象是否可回收" class="headerlink" title="四.判断对象是否可回收"></a><font color="#324057">四.判断对象是否可回收</font></h3><p>一个对象是否可被回收或者说被标记回收，用了哪些方法去判断？我们接下来就是要探讨这个问题。我们先看一下内存的分配策略：</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree8.jpg" alt="jvmthree8"></p>
+<h4 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h4><h5 id="1-对象优先在eden区分配"><a href="#1-对象优先在eden区分配" class="headerlink" title="1. 对象优先在eden区分配"></a>1. 对象优先在eden区分配</h5><p>目前主流的垃圾回收器都采用的分代方式去回收垃圾。在创建对象的时候，一般是在eden区分配对象内存，当eden内存不足的时候，它就会进行一次minor GC , 这时候回收器发现这些对象无法进入survivor区，通过<b>分配担保机制</b>把新生代的对象提前转移到老年代中去，如果未占满老年底就不会触发Full GC ,执行Minor GC后，后面分配的对象如果能够存在eden区的话，还是会在eden区分配内存。</p>
+<h5 id="2-大对象直接进入老年代"><a href="#2-大对象直接进入老年代" class="headerlink" title="2. 大对象直接进入老年代"></a>2. 大对象直接进入老年代</h5><p>大对象就是需要大量连续内存空间的对象（比如：字符串、数组）。<br>这样做是为了为了避免为大对象分配内存时由于分配担保机制带来的复制而降低效率。</p>
+<h5 id="3-长期存活的对象将进入老年代"><a href="#3-长期存活的对象将进入老年代" class="headerlink" title="3. 长期存活的对象将进入老年代"></a>3. 长期存活的对象将进入老年代</h5><p>垃圾回收器使用了分代的思想，那么jvm就得分别出哪些得在新生代，哪些得在老年代。所以jvm会给每个对象分配一个年龄标识。</p>
+<p>新生的对象存放在eden区，在第一次进行minorGC的时候，该对象生存下来，并且可以给survivor收容的话，就把该对象放入survivor区并把年龄设置为1.每当进行一次minorGC,并且该对象生存下来的话，年龄就加一，直到默认的年龄(默认年龄是15)后生存下来进入老年代.<br>对象晋升到老年代的年龄阈值，可以通过参数 -XX:MaxTenuringThreshold来设置。</p>
+<h5 id="4-动态对象年龄判定"><a href="#4-动态对象年龄判定" class="headerlink" title="4. 动态对象年龄判定"></a>4. 动态对象年龄判定</h5><p>为了更好的适应不同程序的内存情况，虚拟机不是永远要求对象年龄必须达到了某个值才能进入老年代，如果 Survivor 空间中相同年龄所有对象大小的总和大于 Survivor 空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无需达到要求的年龄。</p>
+<h4 id="判断对象的死亡"><a href="#判断对象的死亡" class="headerlink" title="判断对象的死亡"></a>判断对象的死亡</h4><p>堆中存放着大量的对象和数组数据，垃圾回收器该怎么判断这个是死亡的对象或者是需要标记死亡的对象呢？<br>我们大致可以这么分：</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree9.jpg" alt="jvmthree8"></p>
+<h5 id="1-引用计数法"><a href="#1-引用计数法" class="headerlink" title="1. 引用计数法"></a>1. 引用计数法</h5><p>给一个对象进行引用标记，当有一个地方引用它就加一，当一个引用是失效就减一,当一个对象的引用为0的时候，就可以标记不可再用的对象。</p>
+<p>这个方法实现简单，效率高，但是目前主流的虚拟机中并没有选择这个算法来管理内存，其最主要的原因是它很难解决对象之间相互循环引用的问题。 所谓对象之间的相互引用问题，如下面代码所示：除了对象objA 和 objB 相互引用着对方之外，这两个对象之间再无任何引用。但是他们因为互相引用对方，导致它们的引用计数器都不为0，于是引用计数算法无法通知 GC 回收器回收他们。</p>
+<p>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGc</span> </span>&#123;</span><br><span class="line">    Object instance = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ReferenceCountingGc objA = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">		ReferenceCountingGc objB = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">		objA.instance = objB;</span><br><span class="line">		objB.instance = objA;</span><br><span class="line">		objA = <span class="keyword">null</span>;</span><br><span class="line">		objB = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-可达性分析算法"><a href="#2-可达性分析算法" class="headerlink" title="2. 可达性分析算法"></a>2. 可达性分析算法</h5><p>这个算法的基本思想就是通过一系列的称为 “GC Roots” 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。</p>
+<p><img src="/2018/09/05/jvmthree/jvmthree10.jpg" alt="jvmthree8"></p>
+<h5 id="3-引用"><a href="#3-引用" class="headerlink" title="3. 引用"></a>3. 引用</h5><p>无论是通过引用计数法判断对象引用数量，还是通过可达性分析法判断对象的引用链是否可达，判定对象的存活都与“引用”有关。</p>
+<p>JDK1.2之前，Java中引用的定义很传统：如果reference类型的数据存储的数值代表的是另一块内存的起始地址，就称这块内存代表一个引用。</p>
+<p>JDK1.2以后，Java对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱）</p>
+<ul>
+<li><h5 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h5><p>  以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它。当内存空 间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。</p>
+</li>
+<li><h5 id="软引用（SoftReference）"><a href="#软引用（SoftReference）" class="headerlink" title="软引用（SoftReference）"></a>软引用（SoftReference）</h5><p>  如果一个对象只具有软引用，在引用计数器检测到的时候引用计数器不会加一。如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。</p>
+<p>  软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收，JAVA虚拟机就会把这个软引用加入到与之关联的引用队列中。</p>
+</li>
+<li><h5 id="弱引用（WeakReference）"><a href="#弱引用（WeakReference）" class="headerlink" title="弱引用（WeakReference）"></a>弱引用（WeakReference）</h5><p>  如果一个对象只具有弱引用，在引用计数器检测到的时候引用计数器不会加一。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它 所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程， 因此不一定会很快发现那些只具有弱引用的对象。</p>
+<p>  弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。</p>
+</li>
+<li><h5 id="虚引用（PhantomReference）"><a href="#虚引用（PhantomReference）" class="headerlink" title="虚引用（PhantomReference）"></a>虚引用（PhantomReference）</h5><ul>
+<li><p>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。</p>
+</li>
+<li><p>虚引用主要用来跟踪对象被垃圾回收的活动。</p>
+</li>
+<li><p>虚引用与软引用和弱引用的一个区别在于： 虚引用必须和引用队列（ReferenceQueue）联合使用。当垃 圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是 否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>特别注意，在程序设计中一般很少使用弱引用与虚引用，使用软引用的情况较多，这是因为软引用可以加速JVM对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生。</p>
+</blockquote>
+<h5 id="4-不可达的对象并非“非死不可”"><a href="#4-不可达的对象并非“非死不可”" class="headerlink" title="4. 不可达的对象并非“非死不可”"></a>4. 不可达的对象并非“非死不可”</h5><p>即使在可达性分析法中不可达的对象，也并非是“非死不可”的，这时候它们暂时处于“缓刑阶段”，要真正宣告一个对象死亡，至少要经历两次标记过程；可达性分析法中不可达的对象被第一次标记并且进行一次筛选，筛选的条件是此对象是否有必要执行 finalize 方法。当对象没有覆盖 finalize 方法，或 finalize 方法已经被虚拟机调用过时，虚拟机将这两种情况视为没有必要执行。</p>
+<p>被判定为需要执行的对象将会被放在一个队列中进行第二次标记，除非这个对象与引用链上的任何一个对象建立关联，否则就会被真的回收。</p>
+<h5 id="5-如何判断一个常量是废弃常量"><a href="#5-如何判断一个常量是废弃常量" class="headerlink" title="5. 如何判断一个常量是废弃常量"></a>5. 如何判断一个常量是废弃常量</h5><p>运行时常量池主要回收的是废弃的常量。那么，我们如何判断一个常量是废弃常量呢？</p>
+<p>假如在常量池中存在字符串 “abc”，如果当前没有任何String对象引用该字符串常量的话，就说明常量 “abc” 就是废弃常量，如果这时发生内存回收的话而且有必要的话，”abc” 就会被系统清理出常量池。</p>
+<h5 id="6-如何判断一个类是无用的类"><a href="#6-如何判断一个类是无用的类" class="headerlink" title="6.如何判断一个类是无用的类"></a>6.如何判断一个类是无用的类</h5><p>方法区主要回收的是无用的类，那么如何判断一个类是无用的类的呢？</p>
+<p>判定一个常量是否是“废弃常量”比较简单，而要判定一个类是否是“无用的类”的条件则相对苛刻许多。类需要同时满足下面3个条件才能算是 “无用的类” ：</p>
+<ul>
+<li>该类所有的实例都已经被回收，也就是 Java 堆中不存在该类的任何实例。</li>
+<li>加载该类的 ClassLoader 已经被回收。</li>
+<li>该类对应的 java.lang.Class 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>虚拟机可以对满足上述3个条件的无用类进行回收，这里说的仅仅是“可以”，而并不是和对象一样不使用了就会必然被回收。</p>
+<h3 id="关于此篇博客"><a href="#关于此篇博客" class="headerlink" title="关于此篇博客"></a>关于此篇博客</h3><blockquote>
+<p>这篇博客是从垃圾回收算法到垃圾回收器，最后解释了下判断一个对象在什么情况下会当成垃圾处理。垃圾回收算法总共有复制，标记-清除，标记-整理，然后对堆区域进行垃圾分代来做垃圾回收器，总共讲了七个垃圾回收器，主要是CMS和G1,主要的思想是并行和并发的合理利用来加快效率和吞吐量。最后是判断对象，常量和类的是否可回收性，主要是了解两个算法和引用的意义。里面的内容都很容易理解，这些博主的话语都很简洁直白，基本我都是CV，我写博客只要不涉及到代码，我基本都CV，在后面尽量慢慢改掉这个坏习惯吧。还有个参数配置和使用就不写了，想看的看下面的博客里面有。感谢大神的博客。</p>
+</blockquote>
+<h5 id="引用博客"><a href="#引用博客" class="headerlink" title="引用博客"></a>引用博客</h5><blockquote>
+<p><a href="https://github.com/Snailclimb/Java-Guide/blob/master/Java%E7%9B%B8%E5%85%B3/%E6%90%9E%E5%AE%9AJVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95.md" target="_blank" rel="noopener">搞定JVM垃圾回收就是这么简单.md</a><br><a href="https://blog.csdn.net/d6619309/article/details/53358250" target="_blank" rel="noopener">Java GC 介绍</a></p>
+</blockquote>
 
       
     </div>
@@ -535,8 +735,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -643,6 +852,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习java虚拟机-三-垃圾回收机制"><span class="nav-number">1.</span> <span class="nav-text">学习java虚拟机(三): 垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java-GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">之前我在学习jvm内存分布的时候，提到了java堆也被称为GC堆，这是因为堆是存储已经实例化的对象和数组的地方，内存占用的比较多，所以需要去判断有些数据是否还有存在的价值，如果没价值，那么这些数据将会被清除，以达到整理内存空间来避免无限增长的内存空间导致的oom。作为一个合格的Java程序员，有必要了解Java GC相关知识。掌握GC知识一方面可以帮助我们快速排查因JVM导致的线上问题，另一方面也可以帮助我们在Java应用发布之前合理地对JVM进行调优，提高应用的执行效率、可靠性和健壮性。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-堆内存结构"><span class="nav-number">1.1.</span> <span class="nav-text">一.堆内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-分代回收算法"><span class="nav-number">1.2.</span> <span class="nav-text">二.分代回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-复制算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 复制算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-标记-清除算法"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 标记-清除算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-标记-整理算法"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 标记-整理算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-垃圾回收器"><span class="nav-number">1.3.</span> <span class="nav-text">三.垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-新生代收集器"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 新生代收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Serial收集器"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Serial收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ParNew收集器"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">ParNew收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Parallel-Scavenge收集器"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Parallel Scavenge收集器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-老年代收集器"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 老年代收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Serial-Old收集器"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Serial Old收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Parallel-Old收集器"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Parallel Old收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CMS收集器"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">CMS收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#G1收集器"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">G1收集器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始标记"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">初始标记</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发标记"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">并发标记</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最终标记"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">最终标记</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#筛选回收"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">筛选回收</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-判断对象是否可回收"><span class="nav-number">1.4.</span> <span class="nav-text">四.判断对象是否可回收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分配策略"><span class="nav-number">1.4.1.</span> <span class="nav-text">分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-对象优先在eden区分配"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1. 对象优先在eden区分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-大对象直接进入老年代"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">2. 大对象直接进入老年代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-长期存活的对象将进入老年代"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">3. 长期存活的对象将进入老年代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-动态对象年龄判定"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">4. 动态对象年龄判定</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断对象的死亡"><span class="nav-number">1.4.2.</span> <span class="nav-text">判断对象的死亡</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-引用计数法"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1. 引用计数法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-可达性分析算法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2. 可达性分析算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-引用"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3. 引用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#强引用"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">强引用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软引用（SoftReference）"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">软引用（SoftReference）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用（WeakReference）"><span class="nav-number">1.4.2.6.</span> <span class="nav-text">弱引用（WeakReference）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#虚引用（PhantomReference）"><span class="nav-number">1.4.2.7.</span> <span class="nav-text">虚引用（PhantomReference）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-不可达的对象并非“非死不可”"><span class="nav-number">1.4.2.8.</span> <span class="nav-text">4. 不可达的对象并非“非死不可”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-如何判断一个常量是废弃常量"><span class="nav-number">1.4.2.9.</span> <span class="nav-text">5. 如何判断一个常量是废弃常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-如何判断一个类是无用的类"><span class="nav-number">1.4.2.10.</span> <span class="nav-text">6.如何判断一个类是无用的类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于此篇博客"><span class="nav-number">1.5.</span> <span class="nav-text">关于此篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引用博客"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">引用博客</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
